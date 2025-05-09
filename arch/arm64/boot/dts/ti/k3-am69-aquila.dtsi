@@ -10,6 +10,7 @@
 #include <dt-bindings/gpio/gpio.h>
 #include <dt-bindings/input/input.h>
 #include <dt-bindings/net/ti-dp83867.h>
+#include <dt-bindings/phy/phy-cadence.h>
 #include <dt-bindings/usb/pd.h>
 #include "k3-j784s4.dtsi"
 
@@ -1604,10 +1605,13 @@
 &pcie0_rc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_pcie0_reset>;
+	clocks = <&k3_clks 332 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
+	clock-names = "fck", "pcie_refclk";
 	num-lanes = <2>;
 	phy-names = "pcie-phy";
 	phys = <&serdes1_pcie0_2l_link>;
 	reset-gpios = <&main_gpio0 32 GPIO_ACTIVE_HIGH>;
+	ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x3>;
 	status = "disabled";
 };
 
@@ -1615,19 +1619,25 @@
 &pcie1_rc {
 	pinctrl-names = "default";
 	pinctrl-0 = <&pinctrl_pcie1_reset>;
+	clocks = <&k3_clks 333 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
+	clock-names = "fck", "pcie_refclk";
 	num-lanes = <2>;
 	phy-names = "pcie-phy";
 	phys = <&serdes0_pcie1_2l_link>;
 	reset-gpios = <&main_gpio0 41 GPIO_ACTIVE_HIGH>;
+	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
 	status = "disabled";
 };
 
 /* On-module PCIe USB Bridge */
 &pcie2_rc {
+	clocks = <&k3_clks 334 0>, <&serdes1 CDNS_TORRENT_REFCLK_DRIVER>;
+	clock-names = "fck", "pcie_refclk";
 	num-lanes = <1>;
 	phy-names = "pcie-phy";
 	phys = <&serdes1_pcie2_1l_link>;
 	reset-gpios = <&som_gpio_expander 3 GPIO_ACTIVE_HIGH>;
+	ti,syscon-acspcie-proxy-ctrl = <&acspcie1_proxy_ctrl 0x3>;
 	status = "okay";
 
 	pci@0,0 {
@@ -1648,10 +1658,13 @@
 
 /* PCIE for On-module Wi-Fi */
 &pcie3_rc {
+	clocks = <&k3_clks 335 0>, <&serdes0 CDNS_TORRENT_REFCLK_DRIVER>;
+	clock-names = "fck", "pcie_refclk";
 	num-lanes = <1>;
 	phy-names = "pcie-phy";
 	phys = <&serdes0_pcie3_1l_link>;
 	reset-gpios = <&som_gpio_expander 4 GPIO_ACTIVE_HIGH>;
+	ti,syscon-acspcie-proxy-ctrl = <&acspcie0_proxy_ctrl 0x3>;
 	status = "okay";
 };
 
