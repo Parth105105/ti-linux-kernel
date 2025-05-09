@@ -147,6 +147,11 @@
 			reg = <0x1a090 0x4>;
 		};
 
+		acspcie1_proxy_ctrl: acspcie1-ctrl@1a094 {
+			compatible = "ti,j784s4-acspcie-proxy-ctrl", "syscon";
+			reg = <0x1a094 0x4>;
+		};
+
 		serdes_ln_ctrl: mux-controller@4080 {
 			compatible = "reg-mux";
 			reg = <0x00004080 0x30>;
