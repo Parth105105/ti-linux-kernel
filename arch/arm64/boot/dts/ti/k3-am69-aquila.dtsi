@@ -547,32 +547,32 @@
 	/* Aquila I2C_3_DSI1 */
 	pinctrl_main_i2c0: main-i2c0-default-pins {
 		pinctrl-single,pins = <
-			J784S4_IOPAD(0x0e0, PIN_INPUT, 0) /* (AN36) I2C0_SCL */ /* AQUILA B41 */
-			J784S4_IOPAD(0x0e4, PIN_INPUT, 0) /* (AP37) I2C0_SDA */ /* AQUILA B40 */
+			J784S4_IOPAD(0x0e0, PIN_INPUT_PULLUP, 0) /* (AN36) I2C0_SCL */ /* AQUILA B41 */
+			J784S4_IOPAD(0x0e4, PIN_INPUT_PULLUP, 0) /* (AP37) I2C0_SDA */ /* AQUILA B40 */
 			>;
 	};
 
 	/* Aquila I2C_4_CSI1 */
 	pinctrl_main_i2c1: main-i2c1-default-pins {
 		pinctrl-single,pins = <
-			J784S4_IOPAD(0x020, PIN_INPUT, 12) /* (AJ35) MCAN15_RX.I2C1_SCL */ /* AQUILA A13 */
-			J784S4_IOPAD(0x024, PIN_INPUT, 12) /* (AH34) MCAN16_TX.I2C1_SDA */ /* AQUILA A12 */
+			J784S4_IOPAD(0x020, PIN_INPUT_PULLUP, 12) /* (AJ35) MCAN15_RX.I2C1_SCL */ /* AQUILA A13 */
+			J784S4_IOPAD(0x024, PIN_INPUT_PULLUP, 12) /* (AH34) MCAN16_TX.I2C1_SDA */ /* AQUILA A12 */
 			>;
 	};
 
 	/* Aquila I2C_5_CSI2 */
 	pinctrl_main_i2c2: main-i2c2-default-pins {
 		pinctrl-single,pins = <
-			J784S4_IOPAD(0x04c, PIN_INPUT, 13) /* (AC32) MCASP1_AXR1.I2C2_SCL */ /* AQUILA C6 */
-			J784S4_IOPAD(0x050, PIN_INPUT, 13) /* (AC37) MCASP1_AXR2.I2C2_SDA */ /* AQUILA C5 */
+			J784S4_IOPAD(0x04c, PIN_INPUT_PULLUP, 13) /* (AC32) MCASP1_AXR1.I2C2_SCL */ /* AQUILA C6 */
+			J784S4_IOPAD(0x050, PIN_INPUT_PULLUP, 13) /* (AC37) MCASP1_AXR2.I2C2_SDA */ /* AQUILA C5 */
 			>;
 	};
 
 	/* Aquila I2C_6 */
 	pinctrl_main_i2c5: main-i2c5-default-pins {
 		pinctrl-single,pins = <
-			J784S4_IOPAD(0x01c, PIN_INPUT, 8) /* (AG34) MCAN15_TX.I2C5_SCL */ /* AQUILA C19 */
-			J784S4_IOPAD(0x018, PIN_INPUT, 8) /* (AK36) MCAN14_RX.I2C5_SDA */ /* AQUILA C18 */
+			J784S4_IOPAD(0x01c, PIN_INPUT_PULLUP, 8) /* (AG34) MCAN15_TX.I2C5_SCL */ /* AQUILA C19 */
+			J784S4_IOPAD(0x018, PIN_INPUT_PULLUP, 8) /* (AK36) MCAN14_RX.I2C5_SDA */ /* AQUILA C18 */
 			>;
 	};
 
@@ -916,16 +916,16 @@
 	/* Aquila I2C_1 */
 	pinctrl_mcu_i2c0: mcu-i2c0-default-pins {
 		pinctrl-single,pins = <
-			J784S4_WKUP_IOPAD(0x0a0, PIN_INPUT, 0) /* (M35) MCU_I2C0_SCL */ /* AQUILA D8 */
-			J784S4_WKUP_IOPAD(0x0a4, PIN_INPUT, 0) /* (G34) MCU_I2C0_SDA */ /* AQUILA D7 */
+			J784S4_WKUP_IOPAD(0x0a0, PIN_INPUT_PULLUP, 0) /* (M35) MCU_I2C0_SCL */ /* AQUILA D8 */
+			J784S4_WKUP_IOPAD(0x0a4, PIN_INPUT_PULLUP, 0) /* (G34) MCU_I2C0_SDA */ /* AQUILA D7 */
 		>;
 	};
 
 	/* Aquila I2C_2 */
 	pinctrl_mcu_i2c1: mcu-i2c1-default-pins {
 		pinctrl-single,pins = <
-			J784S4_WKUP_IOPAD(0x078, PIN_INPUT, 0) /* (L35) WKUP_GPIO0_8.MCU_I2C1_SCL */ /* AQUILA C17 */
-			J784S4_WKUP_IOPAD(0x07c, PIN_INPUT, 0) /* (L34) WKUP_GPIO0_9.MCU_I2C1_SDA */ /* AQUILA C16 */
+			J784S4_WKUP_IOPAD(0x078, PIN_INPUT_PULLUP, 0) /* (L35) WKUP_GPIO0_8.MCU_I2C1_SCL */ /* AQUILA C17 */
+			J784S4_WKUP_IOPAD(0x07c, PIN_INPUT_PULLUP, 0) /* (L34) WKUP_GPIO0_9.MCU_I2C1_SDA */ /* AQUILA C16 */
 		>;
 	};
 
