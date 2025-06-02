@@ -1104,20 +1104,100 @@
 	temperature = <105000>;
 };
 
+&main0_thermal {
+	trips {
+		main0_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		main0_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
+};
+
 &main1_crit {
 	temperature = <105000>;
+};
+
+&main1_thermal {
+	trips {
+		main1_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		main1_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
 };
 
 &main2_crit {
 	temperature = <105000>;
 };
 
+&main2_thermal {
+	trips {
+		main2_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		main2_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
+};
+
 &main3_crit {
 	temperature = <105000>;
 };
 
+&main3_thermal {
+	trips {
+		main3_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		main3_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
+};
+
 &main4_crit {
 	temperature = <105000>;
+};
+
+&main4_thermal {
+	trips {
+		main4_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		main4_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
 };
 
 /* Aquila ETH_2 SGMII PHY */
@@ -2012,8 +2092,40 @@
 	temperature = <105000>;
 };
 
+&wkup0_thermal {
+	trips {
+		wkup0_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		wkup0_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
+};
+
 &wkup1_crit {
 	temperature = <105000>;
+};
+
+&wkup1_thermal {
+	trips {
+		wkup1_alert0: trip-point0 {
+			temperature = <70000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+
+		wkup1_alert1: trip-point1 {
+			temperature = <85000>;
+			hysteresis = <2000>;
+			type = "active";
+		};
+	};
 };
 
 &wkup_gpio_intr {

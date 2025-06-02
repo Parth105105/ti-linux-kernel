@@ -79,7 +79,6 @@
 			"Headphone", "Headphone Jack",
 			"Line", "Line In Jack";
 
-
 		codec_dai: simple-audio-card,codec {
 			sound-dai = <&wm8904_1a>;
 		};
@@ -116,6 +115,76 @@
 
 &dss {
 	status = "okay";
+};
+
+&main0_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&main0_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&main0_alert1>;
+		};
+	};
+};
+
+&main1_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&main1_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&main1_alert1>;
+		};
+	};
+};
+
+&main2_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&main2_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&main2_alert1>;
+		};
+	};
+};
+
+&main3_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&main3_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&main3_alert1>;
+		};
+	};
+};
+
+&main4_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&main4_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&main4_alert1>;
+		};
+	};
 };
 
 /* Aquila ETH_2 */
@@ -279,7 +348,9 @@
 		reg = <0x18>;
 		#pwm-cells = <2>;
 
-		fan {
+		fan: fan {
+			cooling-levels = <102 179 255>;
+			#cooling-cells = <2>;
 			pwms = <&fan_controller 40000 PWM_POLARITY_INVERTED>;
 		};
 	};
@@ -473,6 +544,34 @@
 	port {
 		usb0_hs: endpoint {
 			remote-endpoint = <&usb_1_con_hs>;
+		};
+	};
+};
+
+&wkup0_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&wkup0_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&wkup0_alert1>;
+		};
+	};
+};
+
+&wkup1_thermal {
+	cooling-maps {
+		map0 {
+			cooling-device = <&fan 1 1>;
+			trip = <&wkup1_alert0>;
+		};
+
+		map1 {
+			cooling-device = <&fan 2 2>;
+			trip = <&wkup1_alert1>;
 		};
 	};
 };
