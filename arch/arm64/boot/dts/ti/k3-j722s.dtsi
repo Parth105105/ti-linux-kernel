@@ -109,16 +109,6 @@
 	ranges = <0x00 0x00 0x70000000 0x40000>;
 };
 
-&main_pmx0 {
-	pinctrl-single,gpio-range =
-		<&main_pmx0_range 0 32 (PIN_INPUT | PIN_GPIO_MUX_MODE)>,
-		<&main_pmx0_range 33 55 (PIN_INPUT | PIN_GPIO_MUX_MODE)>,
-		<&main_pmx0_range 101 25 (PIN_INPUT | PIN_GPIO_MUX_MODE)>,
-		<&main_pmx0_range 137 5 (PIN_INPUT | PIN_GPIO_MUX_MODE)>,
-		<&main_pmx0_range 143 3 (PIN_INPUT | PIN_GPIO_MUX_MODE)>,
-		<&main_pmx0_range 149 2 (PIN_INPUT | PIN_GPIO_MUX_MODE)>;
-};
-
 &main_gpio0 {
 	gpio-ranges = <&main_pmx0 0 0 32>,
 		      <&main_pmx0 32 33 38>,
