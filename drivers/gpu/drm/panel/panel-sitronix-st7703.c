@@ -673,23 +673,106 @@ static const struct st7703_panel_desc gameforcechi_desc = {
 	.init_sequence = gameforcechi_init_sequence,
 };
 
+static void pila_init_sequence(struct mipi_dsi_multi_context *dsi_ctx)
+{
+	/*
+	 * Init sequence was supplied by the panel vendor.
+	 */
+
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETEXTC, 0xF1, 0x12, 0x83);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETAPID, 0x00, 0x00, 0x00,
+			       0xDA, 0x80);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETDISP, 0xF0, 0x02, 0x70);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
+			       0x28, 0x03, 0xFF, 0x00, 0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETCYC, 0x80);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETBGP, 0x07, 0x07);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETVCOM, 0x69, 0x69);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETPOWER_EXT, 0x26, 0x22,
+			       0xF0, 0x13);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05,
+			       0xF9, 0x0E, 0x0E, 0x20, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00, 0x44, 0x25, 0x00,
+			       0x90, 0x0A, 0x00, 0x00, 0x01, 0x4F, 0x01,
+			       0x00, 0x00, 0x37);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETVDC, 0x47);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50,
+			       0x50, 0x00, 0x00, 0x12, 0x70, 0x00);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETPOWER, 0x74, 0xC0, 0x32,
+			       0x32, 0x77, 0xF1, 0xCC, 0xDD, 0x67, 0x77,
+			       0x33, 0x33);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETECO, 0x82, 0x00, 0xBF,
+			       0xFF, 0x00, 0xFF);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETIO, 0xB8, 0x00, 0xA,
+			       0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETCABC, 0x10, 0x40, 0x1E,
+			       0x02);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETPANEL, 0x0B);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETGAMMA, 0x00, 0x0A, 0x0F,
+			       0x30, 0x3B, 0x3F, 0x40, 0x3D, 0x06, 0x0D,
+			       0x0E, 0x11, 0x13, 0x11, 0x12, 0x11, 0x1C,
+			       0x00, 0x0A, 0x0F, 0x30, 0x3B, 0x3F, 0x40,
+			       0x3D, 0x06, 0x0D, 0x0E, 0x11, 0x13, 0x11,
+			       0x12, 0x11, 0x1C);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETEQ, 0x07, 0x07, 0x0B,
+			       0x0B, 0x0B, 0x0B, 0x00, 0x00, 0x00, 0x00,
+			       0xFF, 0x80, 0xC0, 0x10);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETGIP1, 0xC8, 0x10, 0x08,
+			       0x00, 0x00, 0x80, 0x40, 0x12, 0x31, 0x23,
+			       0x28, 0x86, 0x80, 0x40, 0x27, 0x10, 0x00,
+			       0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x30, 0x00, 0x00, 0x00, 0x64, 0x20, 0x08,
+			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0xBA,
+			       0x88, 0x75, 0x31, 0x18, 0x88, 0x88, 0x88,
+			       0x88, 0x88, 0x88, 0xBA, 0x88, 0x00, 0x00,
+			       0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_SETGIP2, 0x97, 0x12, 0x82,
+			       0x02, 0x05, 0x07, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x57, 0x13, 0x81,
+			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88,
+			       0xBA, 0x88, 0x46, 0x02, 0x80, 0x88,
+			       0x88, 0x88, 0x88, 0x88, 0x88, 0xBA,
+			       0x88, 0x23, 0x00, 0x00, 0x00, 0xCE,
+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq_multi(dsi_ctx, ST7703_CMD_UNKNOWN_EF, 0xFF, 0xFF, 0x01);
+}
+
+static const struct drm_display_mode pila_mode = {
+	.hdisplay    = 720,
+	.hsync_start = 720 + 180,              // HFP = 180
+	.hsync_end   = 720 + 180 + 40,         // HSYNC = 40
+	.htotal	     = 720 + 180 + 40 + 60,    // HBP = 60 → HTotal = 1000
+	.vdisplay    = 1440,
+	.vsync_start = 1440 + 10,              // VFP = 10
+	.vsync_end   = 1440 + 10 + 6,          // VSYNC = 6
+	.vtotal	     = 1440 + 10 + 6 + 20,     // VBP = 20 → VTotal = 1476
+	.clock       = 88560,                  // ~88.56 MHz → 60 Hz
+	.flags       = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+	.width_mm    = 65,
+	.height_mm   = 130,
+};
+
+static const struct st7703_panel_desc pila_desc = {
+	.mode = &pila_mode,
+	.lanes = 4,
+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
+	.format = MIPI_DSI_FMT_RGB888,
+	.init_sequence = pila_init_sequence,
+};
+
 static int st7703_enable(struct drm_panel *panel)
 {
 	struct st7703 *ctx = panel_to_st7703(panel);
 	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
 	struct mipi_dsi_multi_context dsi_ctx = {.dsi = dsi};
 
-	ctx->desc->init_sequence(&dsi_ctx);
-
 	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
-
-	/* It takes the controller 120 msec to wake up after sleep. */
-	mipi_dsi_msleep(&dsi_ctx, 120);
-
-	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
-
-	if (!dsi_ctx.accum_err)
-		dev_dbg(ctx->dev, "Panel init sequence done\n");
 
 	return dsi_ctx.accum_err;
 }
@@ -724,8 +807,10 @@ static int st7703_unprepare(struct drm_panel *panel)
 static int st7703_prepare(struct drm_panel *panel)
 {
 	struct st7703 *ctx = panel_to_st7703(panel);
-	int ret;
+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
+	struct mipi_dsi_multi_context dsi_ctx = {.dsi = dsi};
 
+	int ret;
 	dev_dbg(ctx->dev, "Resetting the panel\n");
 	gpiod_set_value_cansleep(ctx->reset_gpio, 1);
 
@@ -747,6 +832,17 @@ static int st7703_prepare(struct drm_panel *panel)
 
 	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
 	usleep_range(15000, 20000);
+
+	msleep(200);
+
+	ctx->desc->init_sequence(&dsi_ctx);
+
+	mipi_dsi_dcs_exit_sleep_mode_multi(&dsi_ctx);
+
+	/* It takes the controller 120 msec to wake up after sleep. */
+	mipi_dsi_msleep(&dsi_ctx, 120);
+
+	mipi_dsi_dcs_set_display_on_multi(&dsi_ctx);
 
 	return 0;
 }
@@ -898,6 +994,7 @@ static int st7703_probe(struct mipi_dsi_device *dsi)
 		 mipi_dsi_pixel_format_to_bpp(dsi->format), dsi->lanes);
 
 	st7703_debugfs_init(ctx);
+
 	return 0;
 }
 
@@ -922,6 +1019,7 @@ static const struct of_device_id st7703_of_match[] = {
 	{ .compatible = "powkiddy,rgb30-panel", .data = &rgb30panel_desc },
 	{ .compatible = "rocktech,jh057n00900", .data = &jh057n00900_panel_desc },
 	{ .compatible = "xingbangda,xbd599", .data = &xbd599_desc },
+	{ .compatible = "pila,pila-display", .data = &pila_desc },
 	{ /* sentinel */ }
 };
 MODULE_DEVICE_TABLE(of, st7703_of_match);
