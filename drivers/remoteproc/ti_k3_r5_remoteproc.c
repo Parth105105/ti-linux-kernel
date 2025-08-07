@@ -836,6 +836,8 @@ static int k3_r5_rproc_stop(struct rproc *rproc)
 			return ret;
 		}
 
+		mbox_free_channel(kproc->mbox);
+
 		ret = wait_for_completion_timeout(&kproc->shut_comp, to);
 		if (ret == 0) {
 			dev_err(dev, "%s: timeout waiting for rproc completion event\n", __func__);
