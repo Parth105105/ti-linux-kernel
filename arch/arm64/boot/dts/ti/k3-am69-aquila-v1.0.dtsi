@@ -22,6 +22,24 @@
 		pinctrl-0 = <&pinctrl_gpio21_dp>;
 	};
 
+	/* Enabled by EN_3V3_VIO (PMIC_GPIO_9) */
+	reg_3v3_vio: regulator-3v3-vio {
+		compatible = "regulator-fixed";
+		regulator-max-microvolt = <3300000>;
+		regulator-min-microvolt = <3300000>;
+		regulator-name = "+V3.3_VIO";
+		vin-supply = <&reg_vin>;
+	};
+
+	/* Enabled by +V1.8_MCU_IO */
+	reg_2v5_eth: regulator-2v5-eth {
+		compatible = "regulator-fixed";
+		regulator-max-microvolt = <2500000>;
+		regulator-min-microvolt = <2500000>;
+		regulator-name = "+V2.5_VIO";
+		vin-supply = <&reg_3v3_vio>;
+	};
+
 	/* Aquila ETH_2 MDIO (GPIO bit-banging) */
 	eth2_mdio_gpio: mdio {
 		compatible = "virtual,mdio-gpio";
@@ -211,6 +229,28 @@
 /* Aquila UART_1 (V1.1) */
 &main_uart4 {
 	status = "disabled";
+};
+
+&pmic_tps6594 {
+	regulators {
+		/delete-node/buck5;
+		buck5 {
+			regulator-always-on;
+			regulator-boot-on;
+			regulator-max-microvolt = <850000>;
+			regulator-min-microvolt = <850000>;
+			regulator-name = "+V0.85_VDD_MCU (PMIC BUCK5)";
+		};
+
+		/delete-node/ldo2;
+		ldo2 {
+			regulator-always-on;
+			regulator-boot-on;
+			regulator-min-microvolt = <1800000>;
+			regulator-max-microvolt = <1800000>;
+			regulator-name = "+V1.8_MCU_IO (PMIC LDO2)";
+		};
+	};
 };
 
 &serdes1 {

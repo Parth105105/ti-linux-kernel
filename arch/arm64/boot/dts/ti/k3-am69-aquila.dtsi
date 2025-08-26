@@ -258,33 +258,6 @@
 	};
 
 	/* Enabled by EN_3V3_VIO (PMIC_GPIO_9) */
-	reg_3v3_vio: regulator-3v3-vio {
-		compatible = "regulator-fixed";
-		regulator-max-microvolt = <3300000>;
-		regulator-min-microvolt = <3300000>;
-		regulator-name = "+V3.3_VIO";
-		vin-supply = <&reg_vin>;
-	};
-
-	/* Enabled by +V1.8_MCU_IO */
-	reg_1v0_eth: regulator-1v0-eth {
-		compatible = "regulator-fixed";
-		regulator-max-microvolt = <1000000>;
-		regulator-min-microvolt = <1000000>;
-		regulator-name = "+V1.0_VIO";
-		vin-supply = <&reg_3v3_vio>;
-	};
-
-	/* Enabled by +V1.8_MCU_IO */
-	reg_2v5_eth: regulator-2v5-eth {
-		compatible = "regulator-fixed";
-		regulator-max-microvolt = <2500000>;
-		regulator-min-microvolt = <2500000>;
-		regulator-name = "+V2.5_VIO";
-		vin-supply = <&reg_3v3_vio>;
-	};
-
-	/* Enabled by EN_3V3_VIO (PMIC_GPIO_9) */
 	reg_1v1_usb_bridge: regulator-1v1-vio {
 		compatible = "regulator-fixed";
 		regulator-max-microvolt = <1100000>;
@@ -293,12 +266,18 @@
 		vin-supply = <&reg_vin>;
 	};
 
-	/* Enabled by EN_3V3_VIO (PMIC_GPIO_9) */
 	reg_3v3_wifi: regulator-3v3-wifi {
 		compatible = "regulator-fixed";
+		pinctrl-names = "default";
+		pinctrl-0 = <&pinctrl_en_3v3_wifi>;
+		enable-active-high;
+		gpio = <&wkup_gpio0 57 GPIO_ACTIVE_HIGH>;
+		regulator-always-on;
+		regulator-boot-on;
 		regulator-max-microvolt = <3300000>;
 		regulator-min-microvolt = <3300000>;
 		regulator-name = "+V3.3_WIFI";
+		startup-delay-us = <20000>;
 		vin-supply = <&reg_vin>;
 	};
 
@@ -977,6 +956,13 @@
 	pinctrl_mcu_uart0_tx: mcu-uart0-tx-default-pins {
 		pinctrl-single,pins = <
 			J784S4_WKUP_IOPAD(0x080, PIN_OUTPUT, 2) /* (L33) WKUP_GPIO0_10.MCU_UART0_TXD */ /* AQUILA D22 */
+		>;
+	};
+
+	/* On-module Wi-Fi Power Enable */
+	pinctrl_en_3v3_wifi: wkup-gpio0-57-default-pins {
+		pinctrl-single,pins = <
+			J784S4_WKUP_IOPAD(0x114, PIN_INPUT, 7) /* (M36) WKUP_GPIO0_57 */
 		>;
 	};
 
@@ -2034,12 +2020,12 @@
 				regulator-name = "+V1.8_VDD_IO (PMIC BUCK4)";
 			};
 
-			reg_vdd_mcu: buck5 {
+			reg_3v3_vio: buck5 {
 				regulator-always-on;
 				regulator-boot-on;
-				regulator-max-microvolt = <850000>;
-				regulator-min-microvolt = <850000>;
-				regulator-name = "+V0.85_VDD_MCU (PMIC BUCK5)";
+				regulator-max-microvolt = <3300000>;
+				regulator-min-microvolt = <3300000>;
+				regulator-name = "+V3.3_VIO (PMIC BUCK5)";
 			};
 
 			reg_vda_phy: ldo1 {
@@ -2050,12 +2036,12 @@
 				regulator-name = "+V1.8_VDA_PHY (PMIC LDO1)";
 			};
 
-			reg_mcu_io: ldo2 {
+			reg_2v5_eth: ldo2 {
 				regulator-always-on;
 				regulator-boot-on;
-				regulator-min-microvolt = <1800000>;
-				regulator-max-microvolt = <1800000>;
-				regulator-name = "+V1.8_MCU_IO (PMIC LDO2)";
+				regulator-min-microvolt = <2500000>;
+				regulator-max-microvolt = <2500000>;
+				regulator-name = "+V2.5_ETH";
 			};
 
 			reg_vda_dll: ldo3 {
