@@ -2041,7 +2041,7 @@
 				regulator-boot-on;
 				regulator-min-microvolt = <2500000>;
 				regulator-max-microvolt = <2500000>;
-				regulator-name = "+V2.5_ETH";
+				regulator-name = "+V2.5_ETH (PMIC LDO2)";
 			};
 
 			reg_vda_dll: ldo3 {
