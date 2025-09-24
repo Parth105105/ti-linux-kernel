@@ -433,32 +433,110 @@ static const struct st7703_panel_desc rg353v2_desc = {
 	.init_sequence = rg353v2_init_sequence,
 };
 
+static int pila_init_sequence(struct st7703 *ctx)
+{
+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
+	/*
+	 * Init sequence was supplied by the panel vendor.
+	 */
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEXTC, 0xF1, 0x12, 0x83);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETAPID, 0x00, 0x00, 0x00,
+			       0xDA, 0x80);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETDISP, 0xF0, 0x02, 0x70);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETRGBIF, 0x10, 0x10, 0x28,
+			       0x28, 0x03, 0xFF, 0x00, 0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCYC, 0x80);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETBGP, 0x07, 0x07);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVCOM, 0x69, 0x69);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER_EXT, 0x26, 0x22,
+			       0xF0, 0x13);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETMIPI, 0x33, 0x81, 0x05,
+			       0xF9, 0x0E, 0x0E, 0x20, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00, 0x44, 0x25, 0x00,
+			       0x90, 0x0A, 0x00, 0x00, 0x01, 0x4F, 0x01,
+			       0x00, 0x00, 0x37);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETVDC, 0x47);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_BF, 0x02, 0x11, 0x00);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETSCR, 0x73, 0x73, 0x50,
+			       0x50, 0x00, 0x00, 0x12, 0x70, 0x00);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPOWER, 0x74, 0xC0, 0x32,
+			       0x32, 0x77, 0xF1, 0xCC, 0xDD, 0x67, 0x77,
+			       0x33, 0x33);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETECO, 0x82, 0x00, 0xBF,
+			       0xFF, 0x00, 0xFF);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETIO, 0xB8, 0x00, 0xA,
+			       0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETCABC, 0x10, 0x40, 0x1E,
+			       0x02);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETPANEL, 0x0B);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGAMMA, 0x00, 0x0A, 0x0F,
+			       0x30, 0x3B, 0x3F, 0x40, 0x3D, 0x06, 0x0D,
+			       0x0E, 0x11, 0x13, 0x11, 0x12, 0x11, 0x1C,
+			       0x00, 0x0A, 0x0F, 0x30, 0x3B, 0x3F, 0x40,
+			       0x3D, 0x06, 0x0D, 0x0E, 0x11, 0x13, 0x11,
+			       0x12, 0x11, 0x1C);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETEQ, 0x07, 0x07, 0x0B,
+			       0x0B, 0x0B, 0x0B, 0x00, 0x00, 0x00, 0x00,
+			       0xFF, 0x80, 0xC0, 0x10);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP1, 0xC8, 0x10, 0x08,
+			       0x00, 0x00, 0x80, 0x40, 0x12, 0x31, 0x23,
+			       0x28, 0x86, 0x80, 0x40, 0x27, 0x10, 0x00,
+			       0x00, 0x30, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x30, 0x00, 0x00, 0x00, 0x64, 0x20, 0x08,
+			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88, 0xBA,
+			       0x88, 0x75, 0x31, 0x18, 0x88, 0x88, 0x88,
+			       0x88, 0x88, 0x88, 0xBA, 0x88, 0x00, 0x00,
+			       0x00, 0x01, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_SETGIP2, 0x97, 0x12, 0x82,
+			       0x02, 0x05, 0x07, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x57, 0x13, 0x81,
+			       0x88, 0x88, 0x88, 0x88, 0x88, 0x88,
+			       0xBA, 0x88, 0x46, 0x02, 0x80, 0x88,
+			       0x88, 0x88, 0x88, 0x88, 0x88, 0xBA,
+			       0x88, 0x23, 0x00, 0x00, 0x00, 0xCE,
+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
+			       0x00, 0x00, 0x00, 0x00);
+	mipi_dsi_dcs_write_seq(dsi, ST7703_CMD_UNKNOWN_EF, 0xFF, 0xFF, 0x01);
+
+	return 0;
+}
+static const struct drm_display_mode pila_mode = {
+	.hdisplay    = 720,
+	.hsync_start = 720 + 180,              // HFP = 180
+	.hsync_end   = 720 + 180 + 40,         // HSYNC = 40
+	.htotal	     = 720 + 180 + 40 + 60,    // HBP = 60 → HTotal = 1000
+	.vdisplay    = 1440,
+	.vsync_start = 1440 + 10,              // VFP = 10
+	.vsync_end   = 1440 + 10 + 6,          // VSYNC = 6
+	.vtotal	     = 1440 + 10 + 6 + 20,     // VBP = 20 → VTotal = 1476
+	.clock       = 88560,                  // ~88.56 MHz → 60 Hz
+	.flags       = DRM_MODE_FLAG_NHSYNC | DRM_MODE_FLAG_NVSYNC,
+	.width_mm    = 65,
+	.height_mm   = 130,
+};
+static const struct st7703_panel_desc pila_desc = {
+	.mode = &pila_mode,
+	.lanes = 4,
+	.mode_flags = MIPI_DSI_MODE_VIDEO | MIPI_DSI_MODE_VIDEO_BURST |
+		      MIPI_DSI_MODE_NO_EOT_PACKET | MIPI_DSI_MODE_LPM,
+	.format = MIPI_DSI_FMT_RGB888,
+	.init_sequence = pila_init_sequence,
+};
+
 static int st7703_enable(struct drm_panel *panel)
 {
 	struct st7703 *ctx = panel_to_st7703(panel);
 	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
 	int ret;
 
-	ret = ctx->desc->init_sequence(ctx);
-	if (ret < 0) {
-		dev_err(ctx->dev, "Panel init sequence failed: %d\n", ret);
-		return ret;
-	}
-
-	msleep(20);
-
 	ret = mipi_dsi_dcs_exit_sleep_mode(dsi);
 	if (ret < 0) {
 		dev_err(ctx->dev, "Failed to exit sleep mode: %d\n", ret);
 		return ret;
 	}
-
-	/* Panel is operational 120 msec after reset */
-	msleep(60);
-
-	ret = mipi_dsi_dcs_set_display_on(dsi);
-	if (ret)
-		return ret;
 
 	dev_dbg(ctx->dev, "Panel init sequence done\n");
 
@@ -500,6 +578,8 @@ static int st7703_unprepare(struct drm_panel *panel)
 static int st7703_prepare(struct drm_panel *panel)
 {
 	struct st7703 *ctx = panel_to_st7703(panel);
+	struct mipi_dsi_device *dsi = to_mipi_dsi_device(ctx->dev);
+
 	int ret;
 
 	if (ctx->prepared)
@@ -527,7 +607,19 @@ static int st7703_prepare(struct drm_panel *panel)
 	gpiod_set_value_cansleep(ctx->reset_gpio, 0);
 	usleep_range(15000, 20000);
 
+	ret = ctx->desc->init_sequence(ctx);
+	if (ret < 0) {
+		dev_err(ctx->dev, "Panel init sequence failed: %d\n", ret);
+		return ret;
+	}
 	ctx->prepared = true;
+
+	/* Panel is operational 120 msec after reset */
+	msleep(60);
+
+	ret = mipi_dsi_dcs_set_display_on(dsi);
+	if (ret)
+		return ret;
 
 	return 0;
 }
